@@ -25,7 +25,7 @@ func main() {
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
 	if _, err := os.Stat(".env"); err == nil {
-		viper.SetConfigFile(".env")
+		viper.SetConfigType(".env")
 		_ = viper.ReadInConfig()
 	}
 
