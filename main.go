@@ -9,8 +9,6 @@ import (
 	"kasir-api/services"
 	"log"
 	"net/http"
-	"os"
-	"strings"
 
 	"github.com/spf13/viper"
 )
@@ -21,12 +19,10 @@ type Config struct {
 }
 
 func main() {
-	viper.AutomaticEnv()
-	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
-
-	if _, err := os.Stat(".env"); err == nil {
-		viper.SetConfigType(".env")
-		_ = viper.ReadInConfig()
+	viper.SetConfigFile(".env") // Cari file bernama .env
+	err := viper.ReadInConfig()
+	if err != nil {
+		log.Fatalf("Error loading .env file: %v", err)
 	}
 
 	config := Config{
@@ -57,10 +53,11 @@ func main() {
 			"message": "API Running",
 		})
 	})
-	fmt.Println("Server running di localhost:" + config.Port)
+	addr := "0.0.0.0:" + config.Port
+	fmt.Println("Server running di", addr)
 
-	err = http.ListenAndServe(":"+config.Port, nil)
+	err = http.ListenAndServe(addr, nil)
 	if err != nil {
-		fmt.Println("gagal running server")
+		fmt.Println("gagal running server", err)
 	}
 }
