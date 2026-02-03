@@ -2,15 +2,13 @@ module kasir-api
 
 go 1.25.6
 
-require (
-	github.com/lib/pq v1.11.1
-	github.com/spf13/viper v1.21.0
-)
+require github.com/spf13/viper v1.21.0
 
 require (
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
 	github.com/jackc/puddle/v2 v2.2.2 // indirect
+	github.com/lib/pq v1.10.9 // indirect
 	golang.org/x/sync v0.17.0 // indirect
 )
 
@@ -28,5 +26,4 @@ require (
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
 	golang.org/x/sys v0.34.0 // indirect
 	golang.org/x/text v0.29.0 // indirect
-	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 )
